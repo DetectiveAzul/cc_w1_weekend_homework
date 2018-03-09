@@ -183,6 +183,9 @@ class TestPetShop < Minitest::Test
     #Adding an extra test to check that the pet sold has, in fact, being
     #removed from the inventory, so we don't create infinite pets.
     assert_equal(5, stock_count(@pet_shop))
+    #Adding an extra test to check that the price is discounted from
+    #customer cash
+    assert_equal(100, check_customer_cash(customer))
   end
 
   def test_sell_pet_to_customer__pet_not_found

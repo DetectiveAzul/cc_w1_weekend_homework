@@ -101,9 +101,18 @@ def customer_can_afford_pet(customer, new_pet)
   return false
 end
 
+##This methods takes two arguments, customer hash and the amount of money
+# to change. Will add or remove that amount
 def add_or_remove_customer_cash(customer, amount_change)
   customer[:cash] += amount_change
   pet_shop[:cash] = 0 if customer[:cash] <= 0
+end
+
+#This methods takes one argument, customer hash, and returns the amount
+#of cash the customer has
+
+def check_customer_cash(customer)
+  return customer[:cash]
 end
 #This methods takes three arguments, the pet_shop hash, a pet_hash, and the
 #customer that want to buy the customer. It need to take in consideration:
