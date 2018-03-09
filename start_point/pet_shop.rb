@@ -101,6 +101,10 @@ def customer_can_afford_pet(customer, new_pet)
   return false
 end
 
+def add_or_remove_customer_cash(customer, amount_change)
+  customer[:cash] += amount_change
+  pet_shop[:cash] = 0 if customer[:cash] <= 0
+end
 #This methods takes three arguments, the pet_shop hash, a pet_hash, and the
 #customer that want to buy the customer. It need to take in consideration:
 # a) The pet must be found
@@ -110,10 +114,10 @@ end
 
 def sell_pet_to_customer(pet_shop, pet, customer)
   if pet != nil && customer_can_afford_pet(customer, pet)
-    customer[:cash] -= pet[:price]
-    customer[:pets] << pet
-    pet_shop[:admin][:total_cash] += pet[:price]
-    pet_shop[:admin][:pets_sold] += 1
+    add_or_remove_customer_cash(customer, -(pet[:price]))
+    add_pet_to_customer(customer, pet)
+    add_or_remove_cash(pet_shop, pet[:price])
+    increase_pets_sold(pet_shop, 1)
     remove_pet_by_name(pet_shop,pet[:name])
   end
 end

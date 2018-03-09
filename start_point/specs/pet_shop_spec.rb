@@ -182,7 +182,7 @@ class TestPetShop < Minitest::Test
 
     #Adding an extra test to check that the pet sold has, in fact, being
     #removed from the inventory, so we don't create infinite pets.
-    assert_equal(5, @pet_shop[:pets].count)
+    assert_equal(5, stock_count(@pet_shop))
   end
 
   def test_sell_pet_to_customer__pet_not_found
